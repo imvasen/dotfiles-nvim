@@ -27,7 +27,7 @@ return {
         header = ansi_header,
       },
       sections = {
-        { section = "header" },
+        { section = "header", pane = 2 },
         { section = "keys", gap = 1, padding = 1 },
         {
           pane = 2,
@@ -52,16 +52,6 @@ return {
               icon = " ",
               height = 5,
               enabled = true,
-            },
-            {
-              title = "Open Issues",
-              cmd = "gh issue list -L 3",
-              key = "i",
-              action = function()
-                vim.fn.jobstart("gh issue list --web", { detach = true })
-              end,
-              icon = " ",
-              height = 7,
             },
             {
               icon = " ",

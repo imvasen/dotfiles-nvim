@@ -13,6 +13,9 @@ vim.keymap.set("n", "<leader>bww", ":w<CR>", { silent = true, desc = "Write" })
 vim.keymap.set("n", "<leader>bwq", ":wq<CR>", { silent = true, desc = "Write and quit" })
 vim.keymap.set("n", "<leader>bW", ":w!!<CR>", { silent = true, desc = "Write as sudo" })
 
+vim.keymap.del("n", "<leader>e")
+vim.keymap.set("n", "<leader>et", ":Neotree toggle<CR>", { desc = "Toggle file tree" })
+
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = function(event)
