@@ -1,7 +1,7 @@
 return {
   "kndndrj/nvim-dbee",
   dependencies = {
-    "MunifTanjim/nui.nvim",
+    { "MunifTanjim/nui.nvim", lazy = true },
   },
   build = function()
     -- Install tries to automatically detect the install method.
@@ -13,4 +13,5 @@ return {
     local dbee = require("dbee")
     dbee.setup()
   end,
+  lazy = true,
 }

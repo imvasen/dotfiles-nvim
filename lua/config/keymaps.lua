@@ -15,7 +15,7 @@ vim.keymap.set("n", "<leader>bW", ":w!!<CR>", { silent = true, desc = "Write as 
 
 vim.keymap.del("n", "<leader>e")
 vim.keymap.set("n", "<leader>et", ":Neotree toggle<CR>", { desc = "Toggle file tree" })
-
+vim.keymap.set("n", "<leader>Dt", ":lua require('dbee').toggle()<CR>", { desc = "DBee" })
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = function(event)
