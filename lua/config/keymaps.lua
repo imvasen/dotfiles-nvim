@@ -19,16 +19,34 @@ vim.keymap.set("n", "<leader>Dt", ":lua require('dbee').toggle()<CR>", { desc = 
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = function(event)
-    local opts = { buffer = event.buf }
-
-    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-    vim.keymap.set("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-    vim.keymap.set("n", "<leader><F12>", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-    vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-    vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-    vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-    vim.keymap.set("n", "<leader>ld", "<cmd>lua vim.diagnostic.config({virtual_text=true})<cr>", opts)
-    vim.keymap.set("n", "<leader>lh", "<cmd>lua vim.diagnostic.config({virtual_text=false})<cr>", opts)
+    vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = event.buf, desc = "Hover" })
+    vim.keymap.set("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<cr>", { buffer = event.buf, desc = "Definition" })
+    vim.keymap.set(
+      "n",
+      "<leader><F12>",
+      "<cmd>lua vim.lsp.buf.references()<cr>",
+      { buffer = event.buf, desc = "See references" }
+    )
+    vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", { buffer = event.buf, desc = "Rename" })
+    vim.keymap.set(
+      { "n", "x" },
+      "<F3>",
+      "<cmd>lua vim.lsp.buf.format({async = true})<cr>",
+      { buffer = event.buf, desc = "Format" }
+    )
+    vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", { buffer = event.buf, desc = "Code action" })
+    vim.keymap.set(
+      "n",
+      "<leader>ld",
+      "<cmd>lua vim.diagnostic.config({virtual_text=true})<cr>",
+      { buffer = event.buf, desc = "Show diagnostics" }
+    )
+    vim.keymap.set(
+      "n",
+      "<leader>lh",
+      "<cmd>lua vim.diagnostic.config({virtual_text=false})<cr>",
+      { buffer = event.buf, desc = "Hide diagnostics" }
+    )
   end,
 })
 
