@@ -57,7 +57,7 @@ return {
   keys = function()
     local keys = {
       {
-        "<leader>ee",
+        "<leader>eh",
         function()
           toggle_telescope(require("harpoon"):list())
         end,

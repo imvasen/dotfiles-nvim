@@ -2,6 +2,7 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 local wk = require("which-key")
+local fzf = require("fzf-lua")
 
 -- sudo write
 vim.keymap.set("c", "w!!", "w !sudo tee >/dev/null %", { silent = true })
@@ -14,19 +15,17 @@ vim.keymap.set("n", "<leader>bwq", ":wq<CR>", { silent = true, desc = "Write and
 vim.keymap.set("n", "<leader>bW", ":w!!<CR>", { silent = true, desc = "Write as sudo" })
 
 vim.keymap.del("n", "<leader>e")
-vim.keymap.set("n", "<leader>et", ":Neotree toggle<CR>", { desc = "Toggle file tree" })
+vim.keymap.set("n", "<leader>ef", ":Neotree toggle<CR>", { desc = "Toggle file tree" })
+vim.keymap.set("n", "<leader>em", fzf.marks, { desc = "Explore Marks" })
 vim.keymap.set("n", "<leader>Dt", ":lua require('dbee').toggle()<CR>", { desc = "DBee" })
+
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = function(event)
     vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = event.buf, desc = "Hover" })
     vim.keymap.set("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<cr>", { buffer = event.buf, desc = "Definition" })
-    vim.keymap.set(
-      "n",
-      "<leader><F12>",
-      "<cmd>lua vim.lsp.buf.references()<cr>",
-      { buffer = event.buf, desc = "See references" }
-    )
+    vim.keymap.set("n", "<leader><F12>", fzf.lsp_finder, { desc = "Show References" })
+    vim.keymap.set("n", "<leader>es", fzf.treesitter, { desc = "Treesitter" })
     vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", { buffer = event.buf, desc = "Rename" })
     vim.keymap.set(
       { "n", "x" },
@@ -61,5 +60,5 @@ wk.add({
   { "<leader>e", group = "explore", icon = " " },
   { "<leader>ee", desc = "Harpoon explore", icon = "󱡀 " },
   { "<leader>ea", desc = "Harpoon add", icon = "󱡀 " },
-  { "<leader>et", desc = "Toggle file tree", icon = " " },
+  { "<leader>ef", desc = "Toggle file tree", icon = " " },
 })
