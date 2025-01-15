@@ -7,6 +7,7 @@ return {
     transparent = true,
     on_highlights = function(hl, _)
       hl.ColorColumn = { bg = "#444444" }
+      hl.WinSeparator = { bg = "#000000" }
     end,
   },
 }

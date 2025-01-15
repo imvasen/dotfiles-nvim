@@ -15,7 +15,6 @@ vim.keymap.set("n", "<leader>bwq", ":wq<CR>", { silent = true, desc = "Write and
 vim.keymap.set("n", "<leader>bW", ":w!!<CR>", { silent = true, desc = "Write as sudo" })
 
 vim.keymap.del("n", "<leader>e")
-vim.keymap.set("n", "<leader>ef", ":Neotree toggle<CR>", { desc = "Toggle file tree" })
 vim.keymap.set("n", "<leader>em", fzf.marks, { desc = "Explore Marks" })
 vim.keymap.set("n", "<leader>Dt", ":lua require('dbee').toggle()<CR>", { desc = "DBee" })
 
@@ -24,7 +23,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(event)
     vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = event.buf, desc = "Hover" })
     vim.keymap.set("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<cr>", { buffer = event.buf, desc = "Definition" })
-    vim.keymap.set("n", "<leader><F12>", fzf.lsp_finder, { desc = "Show References" })
+    vim.keymap.set("n", "<leader><F12>", fzf.lsp_references, { desc = "Show References" })
     vim.keymap.set("n", "<leader>es", fzf.treesitter, { desc = "Treesitter" })
     vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", { buffer = event.buf, desc = "Rename" })
     vim.keymap.set(
@@ -58,7 +57,6 @@ wk.add({
   { "<leader>bW", desc = "Write as sudo", icon = "󰽂 " },
   { "<leader>r", desc = "Show registers", icon = " " },
   { "<leader>e", group = "explore", icon = " " },
-  { "<leader>ee", desc = "Harpoon explore", icon = "󱡀 " },
+  { "<leader>eh", desc = "Harpoon explore", icon = "󱡀 " },
   { "<leader>ea", desc = "Harpoon add", icon = "󱡀 " },
-  { "<leader>ef", desc = "Toggle file tree", icon = " " },
 })
