@@ -13,6 +13,8 @@ vim.keymap.set("n", "<leader>bw", ":w<CR>", { silent = true, desc = "Write" })
 vim.keymap.set("n", "<leader>bww", ":w<CR>", { silent = true, desc = "Write" })
 vim.keymap.set("n", "<leader>bwq", ":wq<CR>", { silent = true, desc = "Write and quit" })
 vim.keymap.set("n", "<leader>bW", ":w!!<CR>", { silent = true, desc = "Write as sudo" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
 
 vim.keymap.del("n", "<leader>e")
 vim.keymap.set("n", "<leader>em", fzf.marks, { desc = "Explore Marks" })
