@@ -4,7 +4,7 @@ return {
     config = function()
       -- Navigate tmux, and nvim splits.
       -- Sync nvim buffer with tmux buffer.
-      require("tmux").setup {
+      require("tmux").setup({
         copy_sync = {
           enable = true,
           sync_clipboard = false,
@@ -13,7 +13,7 @@ return {
         resize = {
           enable_default_keybindings = false,
         },
-      }
+      })
     end,
   },
   {
@@ -26,10 +26,10 @@ return {
       "TmuxNavigatePrevious",
     },
     keys = {
-      { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     },
   },
