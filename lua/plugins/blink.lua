@@ -4,6 +4,9 @@ return {
     completion = {
       menu = { auto_show = true },
       ghost_text = { enabled = false },
+      accept = {
+        auto_brackets = { enabled = false },
+      },
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 0,
