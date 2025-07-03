@@ -10,3 +10,4 @@ opt.jumpoptions = "stack,view"
 opt.listchars = { tab = "▸ ", trail = "·", nbsp = "␣" }
 opt.clipboard = ""
 opt.colorcolumn = "80,120"
+opt.guicursor = "i:hor20-Cursor"
