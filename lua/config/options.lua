@@ -11,3 +11,4 @@ opt.listchars = { tab = "▸ ", trail = "·", nbsp = "␣" }
 opt.clipboard = ""
 opt.colorcolumn = "80,120"
 opt.guicursor = "i:hor20-Cursor"
+vim.g.snacks_animate = false

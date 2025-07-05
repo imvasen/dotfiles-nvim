@@ -2,7 +2,7 @@ return {
   "Saghen/blink.cmp",
   opts = {
     completion = {
-      menu = { auto_show = true },
+      menu = { auto_show = false },
       ghost_text = { enabled = false },
       accept = {
         auto_brackets = { enabled = false },
