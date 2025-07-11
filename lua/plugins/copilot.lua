@@ -17,7 +17,7 @@ return {
         debounce = 75,
         hide_during_completion = false,
         keymap = {
-          accept = "<M-Enter>",
+          accept = "<M-y>",
           next = "<M-n>",
           prev = "<M-p>",
         },
