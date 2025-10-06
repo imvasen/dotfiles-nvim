@@ -10,6 +10,7 @@ return {
     cmd = "Copilot",
     build = ":Copilot auth",
     event = "BufReadPost",
+    enabled = false,
     opts = {
       suggestion = {
         enabled = true,
