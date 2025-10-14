@@ -1,7 +1,7 @@
 return {
   "neovim/nvim-lspconfig",
   opts = {
-    servers = { eslint = {} },
+    servers = { eslint = {}, copilot = { enabled = true } },
     setup = {
       eslint = function()
         require("lazyvim.util").lsp.on_attach(function(client)

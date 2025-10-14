@@ -1,5 +1,6 @@
 return {
   "Saghen/blink.cmp",
+  dependencies = { "fang2hou/blink-copilot" },
   opts = {
     completion = {
       menu = { auto_show = false },
@@ -16,7 +17,15 @@ return {
       preset = "default",
     },
     sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "copilot", "lsp", "path", "snippets", "buffer" },
+      providers = {
+        copilot = {
+          name = "copilot",
+          module = "blink-copilot",
+          score_offset = 100,
+          async = true,
+        },
+      },
     },
   },
 }
