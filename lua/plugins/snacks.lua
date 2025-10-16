@@ -85,7 +85,7 @@ local function get_repo_browse_url()
     :gsub("git@gitlab%.", "https://gitlab.")
     :gsub("git@bitbucket%.org:", "https://bitbucket.org/")
     :gsub("git@dev%.azure%.com:", "https://dev.azure.com/")
-    :gsub("%.git$", "")
+    :gsub("%.git\n$", "")
 
   return browse_url
 end
@@ -169,11 +169,11 @@ return {
               icon = " ",
               title = "Git Status",
               cmd = "git --no-pager diff --stat -B -M -C",
-              height = 10,
+              height = 5,
             },
             -- GitLab specific section
             {
-              icon = " ",
+              icon = " ",
               title = "Merge Requests",
               cmd = 'glab mr list --per-page 5 --search "SCLP-"',
               key = "m",
@@ -193,18 +193,18 @@ return {
             },
             -- Alternative sections for non-GitHub/GitLab repositories
             {
-              icon = " ",
+              icon = " ",
               title = "Recent Commits",
               cmd = "git log --oneline -10 --graph --decorate",
-              key = "c",
+              -- key = "c",
               height = 8,
               enabled = in_git and not is_github,
             },
             {
-              icon = " ",
+              icon = " ",
               title = "Branch Info",
               cmd = "git branch -vv && echo '' && git status --porcelain",
-              key = "i",
+              -- key = "i",
               height = 6,
               enabled = in_git and not is_github,
             },
