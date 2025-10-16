@@ -65,7 +65,7 @@ local function get_repo_browse_url()
     return nil
   end
 
-  local git_root = Snacks.git.get_root()
+  local git_root = Snacks.git.get_root() or ""
   local handle = io.popen("cd " .. vim.fn.shellescape(git_root) .. " && git remote get-url origin 2>/dev/null")
   if not handle then
     return nil
@@ -85,6 +85,38 @@ local function get_repo_browse_url()
     :gsub("git@gitlab%.", "https://gitlab.")
     :gsub("git@bitbucket%.org:", "https://bitbucket.org/")
     :gsub("git@dev%.azure%.com:", "https://dev.azure.com/")
+    :gsub("%.git\n$", "")
+
+  return browse_url
+end
+
+-- Helper function to get repository owner and name
+local function get_repo_name()
+  local repo_type = get_repo_type()
+  if not repo_type then
+    return nil
+  end
+
+  local git_root = Snacks.git.get_root() or ""
+  local handle = io.popen("cd " .. vim.fn.shellescape(git_root) .. " && git remote get-url origin 2>/dev/null")
+  if not handle then
+    return nil
+  end
+
+  local remote_url = handle:read("*a")
+  handle:close()
+
+  if not remote_url or remote_url == "" then
+    return nil
+  end
+
+  -- Convert SSH URLs to HTTPS for browsing
+  local browse_url = remote_url
+    :gsub("git@github%.com:", "")
+    :gsub("git@gitlab%.com:", "")
+    :gsub("git@gitlab%.", "")
+    :gsub("git@bitbucket%.org:", "")
+    :gsub("git@dev%.azure%.com:", "")
     :gsub("%.git\n$", "")
 
   return browse_url
@@ -143,7 +175,7 @@ return {
           local cmds = {
             {
               title = "Notifications",
-              cmd = "gh notify -s -a -n5",
+              cmd = "gh notify -s -a -f " .. get_repo_name(),
               action = function()
                 if not is_github then
                   vim.notify("This repository is not hosted on GitHub", vim.log.levels.WARN)
