@@ -7,13 +7,30 @@ local function toggle_telescope(harpoon_files)
   end
 
   local finder = function()
-    local paths = {}
-    for _, item in ipairs(harpoon_files.items) do
-      table.insert(paths, item.value)
+    local results = {}
+    for i, item in ipairs(harpoon_files.items) do
+      local filename = vim.fn.fnamemodify(item.value, ":t")
+      local display = string.format("[%d] %s", i, filename)
+      table.insert(results, {
+        value = item.value,
+        display = display,
+        ordinal = display,
+        filename = filename,
+        path = item.value,
+      })
     end
 
     return require("telescope.finders").new_table({
-      results = paths,
+      results = results,
+      entry_maker = function(entry)
+        return {
+          value = entry.value,
+          display = entry.display,
+          ordinal = entry.ordinal,
+          filename = entry.filename,
+          path = entry.path,
+        }
+      end,
     })
   end
 
@@ -23,6 +40,7 @@ local function toggle_telescope(harpoon_files)
       finder = finder(),
       previewer = conf.file_previewer({}),
       sorter = conf.generic_sorter({}),
+      default_selection_index = 1,
       attach_mappings = function(prompt_bufnr, map)
         map({ "n", "i" }, "<C-x>", function()
           local state = require("telescope.actions.state")
