@@ -94,20 +94,20 @@ end
 local function get_repo_name()
   local repo_type = get_repo_type()
   if not repo_type then
-    return nil
+    return ""
   end
 
   local git_root = Snacks.git.get_root() or ""
   local handle = io.popen("cd " .. vim.fn.shellescape(git_root) .. " && git remote get-url origin 2>/dev/null")
   if not handle then
-    return nil
+    return ""
   end
 
   local remote_url = handle:read("*a")
   handle:close()
 
   if not remote_url or remote_url == "" then
-    return nil
+    return ""
   end
 
   -- Convert SSH URLs to HTTPS for browsing
@@ -119,7 +119,7 @@ local function get_repo_name()
     :gsub("git@dev%.azure%.com:", "")
     :gsub("%.git\n$", "")
 
-  return browse_url
+  return "-f " .. browse_url
 end
 
 -- Helper function to safely run GitHub CLI commands
@@ -175,7 +175,7 @@ return {
           local cmds = {
             {
               title = "Notifications",
-              cmd = "gh notify -s -a -f " .. get_repo_name(),
+              cmd = "gh notify -s -a " .. get_repo_name(),
               action = function()
                 if not is_github then
                   vim.notify("This repository is not hosted on GitHub", vim.log.levels.WARN)
