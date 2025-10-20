@@ -27,5 +27,10 @@ return {
         path = vault_path,
       },
     },
+    templates = {
+      folder = "templates",
+      date_format = "%Y-%m-%d",
+      time_format = "%H:%M",
+    },
   },
 }
