@@ -6,7 +6,6 @@ local fzf = require("fzf-lua")
 
 -- sudo write
 vim.keymap.set("c", "w!!", "w !sudo tee >/dev/null %", { silent = true })
-vim.keymap.set("n", "<leader>r", ":reg<CR>", { desc = "Show registers" })
 vim.keymap.set("n", "<leader>bq", ":q<CR>", { silent = true })
 vim.keymap.set("n", "<leader>bQ", ":q!<CR>", { silent = true })
 vim.keymap.set("n", "<leader>bw", ":w<CR>", { silent = true, desc = "Write" })
@@ -57,7 +56,7 @@ wk.add({
   { "<leader>bww", desc = "Write", icon = "󰆓 " },
   { "<leader>bwq", desc = "Write and quit", icon = "󰸧 " },
   { "<leader>bW", desc = "Write as sudo", icon = "󰽂 " },
-  { "<leader>r", desc = "Show registers", icon = " " },
+  { '<leader>s"', desc = "Show registers", icon = " " },
   { "<leader>e", group = "explore", icon = " " },
   { "<leader>eh", desc = "Harpoon explore", icon = "󱡀 " },
   { "<leader>ea", desc = "Harpoon add", icon = "󱡀 " },
